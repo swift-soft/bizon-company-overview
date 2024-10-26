@@ -30,7 +30,7 @@ export default class HeartRateBarChart extends PureComponent {
   getBarColor = (heartRate) => {
     if (heartRate > 99 || heartRate < 61) return "#ff8e7f";
     if (heartRate > 94 || heartRate < 66) return "#f5ff63";
-    return "#8cff5e";
+    return "#9affa0";
   };
 
   render() {

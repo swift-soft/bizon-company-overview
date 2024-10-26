@@ -57,7 +57,7 @@ export default class HourlyStepsBarChart extends PureComponent {
             <Tooltip />
             <Bar dataKey="steps">
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill="#8884d8" />
+                <Cell key={`cell-${index}`} fill="#9592d4" />
               ))}
             </Bar>
           </BarChart>

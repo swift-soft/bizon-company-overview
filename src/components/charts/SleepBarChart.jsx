@@ -26,7 +26,7 @@ export default class SleepTimeBarChart extends PureComponent {
   getBarColor = (sleepHours) => {
     if (sleepHours < 6.1) return "#ff8e7f"; // Light red for insufficient sleep
     if (sleepHours < 6.8) return "#f5ff63"; // Yellow for borderline ranges
-    return "#8cff5e"; // Green for ideal sleep range (7-8 hours)
+    return "#9affa0"; // Green for ideal sleep range (7-8 hours)
   };
 
   render() {

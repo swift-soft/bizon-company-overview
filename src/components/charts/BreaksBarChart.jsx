@@ -25,7 +25,7 @@ export default class BreaksBarChart extends PureComponent {
   getBarColor = (breaksPercentage) => {
     if (breaksPercentage < 45) return "#ff8e7f"; // Low breaks
     if (breaksPercentage < 63) return "#f5ff63"; // Moderate breaks
-    return "#8cff5e"; // High breaks
+    return "#9affa0"; // High breaks
   };
 
   render() {

@@ -9,7 +9,7 @@ function App() {
       <SidebarWithHeader />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/employee-well-being" element={<Overview />} />
+        <Route path="/employee-wellbeing" element={<Overview />} />
       </Routes>
     </Router>
   );

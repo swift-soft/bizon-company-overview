@@ -32,7 +32,7 @@ export default class SportTimeBarChart extends PureComponent {
   getBarColor = (sportHours) => {
     if (sportHours < 1) return "#ff8e7f"; // Light red for very low activity
     if (sportHours < 2) return "#f5ff63"; // Yellow for moderate activity
-    return "#8cff5e"; // Green for ideal/healthy activity (2+ hours)
+    return "#9affa0"; // Green for ideal/healthy activity (2+ hours)
   };
 
   render() {

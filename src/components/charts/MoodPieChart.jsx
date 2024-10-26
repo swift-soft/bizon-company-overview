@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import { PureComponent } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from "recharts";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
+import { useEffect, useState } from "react";
 
 const data = [
   { name: "Neutral", value: 2942, color: "#f5ff63" },
-  { name: "Positive", value: 5125, color: "#8cff5e" },
+  { name: "Positive", value: 5125, color: "#9affa0" },
   { name: "Negative", value: 1933, color: "#ff8e7f" },
 ];
 
@@ -23,6 +23,7 @@ const renderActiveShape = (props) => {
     payload,
     percent,
     value,
+    opacity,
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
@@ -44,6 +45,7 @@ const renderActiveShape = (props) => {
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
+        opacity={opacity}
       />
       <Sector
         cx={cx}
@@ -53,18 +55,28 @@ const renderActiveShape = (props) => {
         innerRadius={outerRadius + 6}
         outerRadius={outerRadius + 10}
         fill={fill}
+        opacity={opacity}
       />
       <path
         d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
         stroke={fill}
         fill="none"
+        opacity={opacity}
       />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <circle
+        cx={ex}
+        cy={ey}
+        r={2}
+        fill={fill}
+        stroke="none"
+        opacity={opacity}
+      />
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
+        opacity={opacity}
       >
         {payload.name}
       </text>
@@ -74,6 +86,7 @@ const renderActiveShape = (props) => {
         dy={18}
         textAnchor={textAnchor}
         fill="#999"
+        opacity={opacity}
       >
         {`(Rate ${(percent * 100).toFixed(2)}%)`}
       </text>
@@ -81,57 +94,66 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default class MoodPieChart extends PureComponent {
-  state = {
-    activeIndex: 0,
-  };
+export default function MoodPieChart() {
+  const [activeIndex, setActiveIndex] = useState(1000);
 
-  onPieEnter = (_, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
-
-  render() {
-    return (
+  return (
+    <Box
+      h="300px"
+      w="600px"
+      p={2}
+      pt={5}
+      bg="whiteAlpha.800"
+      rounded="lg"
+      boxShadow="md"
+    >
       <Box
-        h="300px"
-        w="600px"
-        p={2}
-        pt={5}
-        bg="whiteAlpha.800"
-        rounded="lg"
-        boxShadow="md"
+        position="absolute"
+        top="714px" //732px with fontsize 8xl
+        left="301px"
+        transform="translate(-50%)"
+        fontSize="9xl"
+        color="#9affa0"
       >
-        <Box
-          position="absolute"
-          top="714px" //732px with fontsize 8xl
-          left="301px"
-          transform="translate(-50%)"
-          fontSize="9xl"
-          color="#8cff5e"
-        >
-          <HiOutlineEmojiHappy />
-        </Box>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={300} height={300}>
-            <Pie
-              activeIndex={[0, 1, 2]}
-              activeShape={renderActiveShape}
-              data={data}
-              cx="50%"
-              cy="50%"
-              innerRadius={80}
-              outerRadius={110}
-              fill="#8884d8"
-            >
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+        <HiOutlineEmojiHappy />
       </Box>
-    );
-  }
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart
+          width={300}
+          height={300}
+          onMouseLeave={() => {
+            setActiveIndex(1000);
+          }}
+        >
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            inactiveShape={(props) =>
+              activeIndex === 1000
+                ? renderActiveShape({ ...props, opacity: 1 })
+                : renderActiveShape({ ...props, opacity: 0.4 })
+            }
+            data={data}
+            cx="50%"
+            cy="50%"
+            innerRadius={80}
+            outerRadius={110}
+            paddingAngle={3}
+            fill="#8884d8"
+            onMouseEnter={(_, index) => setActiveIndex(index)}
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.color}
+                opacity={
+                  activeIndex === 1000 || activeIndex === index ? 1 : 0.4
+                }
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </Box>
+  );
 }
