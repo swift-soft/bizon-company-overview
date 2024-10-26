@@ -14,7 +14,8 @@ const Overview = () => {
       w="1280px"
       mt={20}
       ml={64}
-      h="85%"
+      h="90%"
+      mb={8}
       overflowY="auto"
     >
       <Text fontWeight="bold" fontSize="3xl" my={5}>
