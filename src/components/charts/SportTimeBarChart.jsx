@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import colors from "../../config/colors";
 
 // Updated data for average time spent on sports activities (in hours) per month
 const data = [
@@ -30,9 +31,9 @@ const data = [
 export default class SportTimeBarChart extends PureComponent {
   // Function to determine bar color based on sport hours
   getBarColor = (sportHours) => {
-    if (sportHours < 1) return "#ff8e7f"; // Light red for very low activity
-    if (sportHours < 2) return "#f5ff63"; // Yellow for moderate activity
-    return "#9affa0"; // Green for ideal/healthy activity (2+ hours)
+    if (sportHours < 1) return colors.negative; // Light red for very low activity
+    if (sportHours < 2) return colors.neutral; // Yellow for moderate activity
+    return colors.positive; // Green for ideal/healthy activity (2+ hours)
   };
 
   render() {

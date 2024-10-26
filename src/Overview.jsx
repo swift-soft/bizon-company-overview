@@ -25,7 +25,7 @@ const Overview = () => {
         <Button
           variant="solid"
           color="white"
-          bg="green.200"
+          bg="green.300"
           mr={8}
           rightIcon={<DownloadIcon />}
         >

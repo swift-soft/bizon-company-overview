@@ -11,6 +11,8 @@ import {
   Cell,
 } from "recharts";
 
+import colors from "../../config/colors";
+
 const data = [
   { year: "2017", sleepHours: 6.5 },
   { year: "2018", sleepHours: 7.2 },
@@ -24,9 +26,9 @@ const data = [
 export default class SleepTimeBarChart extends PureComponent {
   // Function to determine bar color based on sleep hours
   getBarColor = (sleepHours) => {
-    if (sleepHours < 6.1) return "#ff8e7f"; // Light red for insufficient sleep
-    if (sleepHours < 6.8) return "#f5ff63"; // Yellow for borderline ranges
-    return "#9affa0"; // Green for ideal sleep range (7-8 hours)
+    if (sleepHours < 6.1) return colors.negative; // Light red for insufficient sleep
+    if (sleepHours < 6.8) return colors.neutral; // Yellow for borderline ranges
+    return colors.positive; // Green for ideal sleep range (7-8 hours)
   };
 
   render() {

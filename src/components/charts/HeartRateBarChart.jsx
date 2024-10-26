@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import colors from "../../config/colors";
 
 const data = [
   { month: "Jan", heartRate: 58 },
@@ -28,9 +29,9 @@ const data = [
 
 export default class HeartRateBarChart extends PureComponent {
   getBarColor = (heartRate) => {
-    if (heartRate > 99 || heartRate < 61) return "#ff8e7f";
-    if (heartRate > 94 || heartRate < 66) return "#f5ff63";
-    return "#9affa0";
+    if (heartRate > 99 || heartRate < 61) return colors.negative;
+    if (heartRate > 94 || heartRate < 66) return colors.neutral;
+    return colors.positive;
   };
 
   render() {

@@ -1,12 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from "recharts";
-import { HiOutlineEmojiHappy } from "react-icons/hi";
-import { useEffect, useState } from "react";
+import colors from "../../config/colors";
+
+import { useState } from "react";
 
 const data = [
-  { name: "Neutral", value: 2942, color: "#f5ff63" },
-  { name: "Positive", value: 5125, color: "#9affa0" },
-  { name: "Negative", value: 1933, color: "#ff8e7f" },
+  { name: "Neutral", value: 2942, color: colors.neutral },
+  { name: "Positive", value: 5125, color: colors.positive },
+  { name: "Negative", value: 1933, color: colors.negative },
 ];
 
 const renderActiveShape = (props) => {
@@ -113,9 +114,24 @@ export default function MoodPieChart() {
         left="301px"
         transform="translate(-50%)"
         fontSize="9xl"
-        color="#9affa0"
       >
-        <HiOutlineEmojiHappy />
+        {activeIndex === 0 ? (
+          <img
+            src="/icons/neutral.svg"
+            alt="Sad Icon"
+            width="120"
+            height="120"
+          />
+        ) : activeIndex === 2 ? (
+          <img src="/icons/sad.svg" alt="Happy Icon" width="120" height="120" />
+        ) : (
+          <img
+            src="/icons/happy.svg"
+            alt="Neutral Icon"
+            width="120"
+            height="120"
+          />
+        )}
       </Box>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart

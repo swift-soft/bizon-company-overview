@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import colors from "../../config/colors";
 
 const data = [
   { year: "2017", breaksPercentage: 90 },
@@ -23,9 +24,9 @@ const data = [
 
 export default class BreaksBarChart extends PureComponent {
   getBarColor = (breaksPercentage) => {
-    if (breaksPercentage < 45) return "#ff8e7f"; // Low breaks
-    if (breaksPercentage < 63) return "#f5ff63"; // Moderate breaks
-    return "#9affa0"; // High breaks
+    if (breaksPercentage < 45) return colors.negative; // Low breaks
+    if (breaksPercentage < 63) return colors.neutral; // Moderate breaks
+    return colors.positive; // High breaks
   };
 
   render() {
