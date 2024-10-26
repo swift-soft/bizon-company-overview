@@ -1,11 +1,20 @@
 import React from "react";
 import { Select } from "@chakra-ui/react";
 
-function SelectTime() {
+function SelectTime({ time = "Monthly" }) {
+  // Define all time options
+  const timeOptions = ["Daily", "Monthly", "Yearly"];
+
+  // Filter out the current time from the options list
+  const filteredOptions = timeOptions.filter((option) => option !== time);
+
   return (
-    <Select placeholder="Montly" size="md" variant="subtle" w="190px">
-      <option label="Daily" value="daily" />
-      <option label="Yearly" value="yearly" />
+    <Select placeholder={time} size="md" variant="subtle" w="190px">
+      {filteredOptions.map((option) => (
+        <option key={option.toLowerCase()} value={option.toLowerCase()}>
+          {option}
+        </option>
+      ))}
     </Select>
   );
 }

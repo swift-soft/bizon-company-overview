@@ -1,6 +1,7 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import Select from "./components/SelectDepartment";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { DownloadIcon } from "@chakra-ui/icons";
 import DiagramsGrid from "./components/ChartGrid";
+import SelectDepartment from "./components/SelectDepartment";
 
 const Overview = () => {
   return (
@@ -11,15 +12,26 @@ const Overview = () => {
       direction="column"
       gap={5}
       w="1280px"
-      mt={24}
+      mt={20}
       ml={64}
       h="85%"
       overflowY="auto"
     >
-      <Text fontWeight="bold" fontSize="3xl" mb={5}>
+      <Text fontWeight="bold" fontSize="3xl" my={5}>
         Hi Justina
       </Text>
-      <Select />
+      <Flex justifyContent="space-between" alignItems="center">
+        <SelectDepartment />
+        <Button
+          variant="solid"
+          color="white"
+          bg="green.200"
+          mr={8}
+          rightIcon={<DownloadIcon />}
+        >
+          Export
+        </Button>
+      </Flex>
       <DiagramsGrid />
     </Flex>
   );

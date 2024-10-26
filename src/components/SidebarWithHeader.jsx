@@ -89,7 +89,7 @@ const NavItem = ({ icon, children, path, ...rest }) => {
     >
       <Flex
         align="center"
-        p="3"
+        p="4"
         mx="4"
         borderRadius="lg"
         role="group"

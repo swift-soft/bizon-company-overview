@@ -12,25 +12,21 @@ import {
 } from "recharts";
 
 const data = [
-  { month: "Jan", heartRate: 58 },
-  { month: "Feb", heartRate: 102 },
-  { month: "Mar", heartRate: 72 },
-  { month: "Apr", heartRate: 85 },
-  { month: "May", heartRate: 110 },
-  { month: "Jun", heartRate: 76 },
-  { month: "Jul", heartRate: 95 },
-  { month: "Aug", heartRate: 64 },
-  { month: "Sep", heartRate: 88 },
-  { month: "Oct", heartRate: 115 },
-  { month: "Nov", heartRate: 76 },
-  { month: "Dec", heartRate: 65 },
+  { year: "2017", sleepHours: 6.5 },
+  { year: "2018", sleepHours: 7.2 },
+  { year: "2019", sleepHours: 6.8 },
+  { year: "2020", sleepHours: 7.0 },
+  { year: "2021", sleepHours: 6.0 },
+  { year: "2022", sleepHours: 8.1 },
+  { year: "2023", sleepHours: 6.4 },
 ];
 
-export default class HeartRateBarChart extends PureComponent {
-  getBarColor = (heartRate) => {
-    if (heartRate > 99 || heartRate < 61) return "#ff8e7f";
-    if (heartRate > 94 || heartRate < 66) return "#f5ff63";
-    return "#8cff5e";
+export default class SleepTimeBarChart extends PureComponent {
+  // Function to determine bar color based on sleep hours
+  getBarColor = (sleepHours) => {
+    if (sleepHours < 6.1) return "#ff8e7f"; // Light red for insufficient sleep
+    if (sleepHours < 6.8) return "#f5ff63"; // Yellow for borderline ranges
+    return "#8cff5e"; // Green for ideal sleep range (7-8 hours)
   };
 
   render() {
@@ -55,17 +51,17 @@ export default class HeartRateBarChart extends PureComponent {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
+            <XAxis dataKey="year" />
             <YAxis
-              label={{ value: "bpm", angle: -90, position: "insideLeft" }}
-              domain={[50, 120]}
+              label={{ value: "Hours", angle: -90, position: "insideLeft" }}
+              domain={[4, 9]} // Adjust Y-axis range based on sleep data
             />
             <Tooltip />
-            <Bar dataKey="heartRate">
+            <Bar dataKey="sleepHours">
               {data.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={this.getBarColor(entry.heartRate)}
+                  fill={this.getBarColor(entry.sleepHours)}
                 />
               ))}
             </Bar>

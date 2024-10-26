@@ -2,6 +2,9 @@ import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import React from "react";
 import ChartContainer from "./ChartContainer";
 import HeartRateBarChart from "./charts/HeartRateBarChart";
+import StepsBarChart from "./charts/StepsBarChart";
+import SleepBarChart from "./charts/SleepBarChart";
+import SportTimeBarChart from "./charts/SportTimeBarChart";
 
 const ChartGrid = () => {
   return (
@@ -10,17 +13,22 @@ const ChartGrid = () => {
         <ChartContainer title="Heart Rate" ChartComponent={HeartRateBarChart} />
         <ChartContainer
           title="Average Steps"
-          ChartComponent={HeartRateBarChart}
+          ChartComponent={StepsBarChart}
+          time="Daily"
         />
       </Flex>
       <Flex gap={5}>
-        <ChartContainer title="Sleep Time" ChartComponent={HeartRateBarChart} />
+        <ChartContainer
+          title="Average Sleep Time"
+          ChartComponent={SleepBarChart}
+          time="Yearly"
+        />
         <ChartContainer title="Mood" ChartComponent={HeartRateBarChart} />
       </Flex>
       <Flex gap={5}>
         <ChartContainer
           title="Sport activity"
-          ChartComponent={HeartRateBarChart}
+          ChartComponent={SportTimeBarChart}
         />
         <ChartContainer
           title="Systematic breaks"

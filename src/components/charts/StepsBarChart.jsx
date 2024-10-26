@@ -12,27 +12,21 @@ import {
 } from "recharts";
 
 const data = [
-  { month: "January", heartRate: 58 },
-  { month: "February", heartRate: 102 },
-  { month: "March", heartRate: 72 },
-  { month: "April", heartRate: 85 },
-  { month: "May", heartRate: 110 },
-  { month: "June", heartRate: 76 },
-  { month: "July", heartRate: 95 },
-  { month: "August", heartRate: 64 },
-  { month: "September", heartRate: 88 },
-  { month: "October", heartRate: 115 },
-  { month: "November", heartRate: 76 },
-  { month: "December", heartRate: 65 },
+  { hour: "0", steps: 50 }, // Steps taken at midnight
+  { hour: "2", steps: 10 },
+  { hour: "4", steps: 40 },
+  { hour: "6", steps: 100 },
+  { hour: "8", steps: 90 },
+  { hour: "10", steps: 70 },
+  { hour: "12", steps: 150 },
+  { hour: "14", steps: 300 },
+  { hour: "16", steps: 400 },
+  { hour: "18", steps: 500 },
+  { hour: "20", steps: 400 },
+  { hour: "22", steps: 300 },
 ];
 
-export default class HeartRateBarChart extends PureComponent {
-  getBarColor = (heartRate) => {
-    if (heartRate > 99 || heartRate < 61) return "#ff8e7f";
-    if (heartRate > 94 || heartRate < 66) return "#f5ff63";
-    return "#8cff5e";
-  };
-
+export default class HourlyStepsBarChart extends PureComponent {
   render() {
     return (
       <Box
@@ -55,15 +49,15 @@ export default class HeartRateBarChart extends PureComponent {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis />
+            <XAxis dataKey="hour" />
+            <YAxis
+              label={{ value: "Steps", angle: -90, position: "insideLeft" }}
+              domain={[0, 600]} // Adjust Y-axis range based on activity data
+            />
             <Tooltip />
-            <Bar dataKey="heartRate">
+            <Bar dataKey="steps">
               {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={this.getBarColor(entry.heartRate)}
-                />
+                <Cell key={`cell-${index}`} fill="#8884d8" />
               ))}
             </Bar>
           </BarChart>
