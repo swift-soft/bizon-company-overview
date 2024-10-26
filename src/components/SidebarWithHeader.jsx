@@ -94,22 +94,12 @@ const NavItem = ({ icon, children, path, ...rest }) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
-        _hover={{
-          bg: "green.200",
-          color: "white",
-        }}
+        _
+        bg={path === "/employee-wellbeing" ? "green.300" : "initial"}
+        color={path === "/employee-wellbeing" ? "white" : "initial"}
         {...rest}
       >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="24"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
+        {icon && <Icon mr="4" fontSize="24" as={icon} />}
         {children}
       </Flex>
     </Box>
