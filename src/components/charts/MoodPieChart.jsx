@@ -110,7 +110,7 @@ export default function MoodPieChart() {
     >
       <Box
         position="absolute"
-        top="714px" //732px with fontsize 8xl
+        top="706px" //732px with fontsize 8xl
         left="301px"
         transform="translate(-50%)"
         fontSize="9xl"
