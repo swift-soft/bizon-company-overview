@@ -18,7 +18,7 @@ const Overview = () => {
       mb={8}
       overflowY="auto"
     >
-      <Text fontWeight="bold" fontSize="3xl" my={5}>
+      <Text fontWeight="bold" fontSize="3xl" mt={5} mb={2}>
         Hi Justina
       </Text>
       <Flex justifyContent="space-between" alignItems="center">
