@@ -5,6 +5,8 @@ import HeartRateBarChart from "./charts/HeartRateBarChart";
 import StepsBarChart from "./charts/StepsBarChart";
 import SleepBarChart from "./charts/SleepBarChart";
 import SportTimeBarChart from "./charts/SportTimeBarChart";
+import BreaksBarChart from "./charts/BreaksBarChart";
+import MoodPieChart from "./charts/MoodPieChart";
 
 const ChartGrid = () => {
   return (
@@ -18,12 +20,12 @@ const ChartGrid = () => {
         />
       </Flex>
       <Flex gap={5}>
+        <ChartContainer title="Mood" ChartComponent={MoodPieChart} />
         <ChartContainer
           title="Average Sleep Time"
           ChartComponent={SleepBarChart}
           time="Yearly"
         />
-        <ChartContainer title="Mood" ChartComponent={HeartRateBarChart} />
       </Flex>
       <Flex gap={5}>
         <ChartContainer
@@ -32,7 +34,8 @@ const ChartGrid = () => {
         />
         <ChartContainer
           title="Systematic breaks"
-          ChartComponent={HeartRateBarChart}
+          ChartComponent={BreaksBarChart}
+          time="Yearly"
         />
       </Flex>
     </Flex>
